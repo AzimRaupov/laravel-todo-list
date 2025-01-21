@@ -16,26 +16,28 @@
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                @foreach($todo as $list)
+                @foreach($todos as $l)
 
                     <tr>
-                        <td><i class="bx bxl-angular bx-md text-danger me-4"></i> <span>{{$list->name}}</span></td>
-                        <td><span class="badge bg-label-primary me-1">{{$list->status}}</span></td>
-                        <td><span class="badge bg-label-danger me-1">{{$list->priority}}</span></td>
-                        <td>{{$list->created_at}}</td>
+                        <td><i class="bx bxl-angular bx-md text-danger me-4"></i> <span>{{$l->name}}</span></td>
+                        <td><span class="badge bg-label-primary me-1">{{$l->status}}</span></td>
+                        <td><span class="badge bg-label-danger me-1">{{$l->priority}}</span></td>
+                        <td>{{$l->created_at}}</td>
 
                         <td>
+
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <form action="{{route('todo_list.destroy',$list)}}" method="POST">
+                                    <form action="{{route('delete',$l)}}" method="post">
+                                        @method('post')
                                         @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                                     </form>
-                                    <a class="btn btn-outline-primary" href="{{route('todo_list.edit',$list)}}">edit</a>
+
+                                    <a class="btn btn-outline-primary" href="{{route('edit',$l)}}">edit</a>
 
                                 </div>
                             </div>

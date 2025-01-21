@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todulist;
+use App\Models\Todolist;
 use Illuminate\Http\Request;
 
 class CreateListController extends Controller
 {
     function index()
     {
-        $todo=Todulist::all();
-        return view('admin.view_list',compact('todo'));
+        $todos=Todolist::all();
+        return view('admin.view_list',compact('todos'));
     }
     function create()
     {
         return view('admin.create_list');
     }
-    function edit()
+    function edit(Todolist $list)
     {
+        return $list;
 
     }
     function show()
@@ -25,21 +26,16 @@ class CreateListController extends Controller
 
 
     }
-    function update(Request $request, Todulist $list)
+    function update(Request $request, Todolist $list)
     {
-return $list;
+        return $list;
     }
     function store(Request $request)
     {
-     Todulist::create($request->all());
+     Todolist::create($request->all());
 
         return redirect()->route('dashboard');
 
     }
-    function destroy(Todulist $list)
-    {
-        return $list;
-        $list->delete();
-return redirect()->route('todo_list.index');
-    }
+
 }
